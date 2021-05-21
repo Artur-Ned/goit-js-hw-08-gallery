@@ -50,7 +50,7 @@ const closeModalBtn = document.querySelector('[data-action="close-lightbox"]');
 // openModalBtn.addEventListener('click', onOpenModal);
 closeModalBtn.addEventListener('click', onClouseModal);
 
-function onOpenModal(event) {
+function onOpenModal() {
  event.preventDefault();
   
   // console.log(`works`);
@@ -58,13 +58,14 @@ function onOpenModal(event) {
     return
   };
 
-lightbox.classList.add('is-open');
-imgModal.src = event.target.dataset.source;
-imgModal.alt = event.target.alt;
+  lightbox.classList.add('is-open');
+
+  imgModal.src = event.target.dataset.source;
+  imgModal.alt = event.target.alt;
 };
 
 function onClouseModal() {
- lightbox.classList.remove('is-open');
+  lightbox.classList.remove('is-open');
   // console.log(`not works`);
   imgModal.src = '';
   imgModal.alt = '';
