@@ -11,7 +11,7 @@ const imgModal = document.querySelector('.lightbox__image');
 
 ulEllement.insertAdjacentHTML('afterbegin', ulItems);
 
-ulEllement.addEventListener('click', onUlEllementClick);
+ulEllement.addEventListener('click', onOpenModal);
 
 
 function makeGalleryMarcup(items) {
@@ -35,26 +35,30 @@ function makeGalleryMarcup(items) {
 };
 // console.log(ulEllement);
 
-function onUlEllementClick(evt) {
-  event.preventDefault();
-  if (!evt.target.classList.contains('gallery__image'))
-  { return  };
-  const imgSourse = evt.target.dataset.source;
-  // console.log(imgSourse);
+// function onUlEllementClick(evt) {
+//   event.preventDefault();
+//   if (!evt.target.classList.contains('gallery__image'))
+//   { return  };
+//   const imgSourse = evt.target.dataset.source;
+//   // console.log(imgSourse);
 
-};
+// };
 
-const openModalBtn = document.querySelector('ul.gallery');
+// const openModalBtn = document.querySelector('.js-gallery');
 const closeModalBtn = document.querySelector('[data-action="close-lightbox"]');
 
-openModalBtn.addEventListener('click', onOpenModal);
+// openModalBtn.addEventListener('click', onOpenModal);
 closeModalBtn.addEventListener('click', onClouseModal);
 
-function onOpenModal() {
+function onOpenModal(event) {
  event.preventDefault();
-  lightbox.classList.add('is-open');
+  
   // console.log(`works`);
- 
+ if (event.target.localName !== 'img') {
+    return
+  };
+
+lightbox.classList.add('is-open');
 imgModal.src = event.target.dataset.source;
 imgModal.alt = event.target.alt;
 };
